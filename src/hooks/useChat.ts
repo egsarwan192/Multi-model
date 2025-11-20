@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { ChatMessage, ChatState } from '@/types/chat';
 import { generateId } from '@/lib/chatHistory';
 
