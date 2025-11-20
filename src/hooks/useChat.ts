@@ -133,7 +133,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
                 accumulatedContent += data.textDelta;
                 updateLastMessage(accumulatedContent);
               }
-            } catch (e) {
+            } catch {
               // Skip invalid JSON
               continue;
             }
