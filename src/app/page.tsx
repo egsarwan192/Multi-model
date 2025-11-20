@@ -34,7 +34,7 @@ export default function Home() {
     } else {
       chat.clearChat();
     }
-  }, [currentChatId, chatHistory, chat.setMessages, chat.setCurrentModel, chat.clearChat]);
+  }, [currentChatId, chatHistory, chat]);
 
   const handleNewChat = () => {
     const newChatId = chatHistory.createChat(chat.currentModel);
