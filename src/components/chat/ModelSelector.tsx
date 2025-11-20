@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { X, Search, Sparkles } from 'lucide-react';
-import { Model } from '@/types/chat';
 import { MODELS, getAllModels } from '@/lib/openrouter';
 import clsx from 'clsx';
 
