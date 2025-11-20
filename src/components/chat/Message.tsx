@@ -4,6 +4,19 @@ import ReactMarkdown from 'react-markdown';
 import { ChatMessage } from '@/types/chat';
 import clsx from 'clsx';
 
+interface CodeProps {
+  inline?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
+interface AnchorProps {
+  href?: string;
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
 interface MessageProps {
   message: ChatMessage;
   streaming?: boolean;
