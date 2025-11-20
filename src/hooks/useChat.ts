@@ -66,7 +66,8 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
   }, []);
 
   const sendMessage = useCallback(async (content: string) => {
-    if (state.isLoading) return;
+    const currentState = stateRef.current;
+    if (currentState.isLoading) return;
 
     try {
       // Add user message
@@ -88,7 +89,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
       });
 
       // Prepare messages for API
-      const messagesForApi = state.messages.concat({
+      const messagesForApi = currentState.messages.concat({
         id: generateId(),
         role: 'user',
         content,
@@ -103,7 +104,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
         },
         body: JSON.stringify({
           messages: messagesForApi,
-          model: state.currentModel,
+          model: currentState.currentModel,
         }),
       });
 
