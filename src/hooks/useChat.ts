@@ -165,10 +165,11 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
   }, [addMessage, updateState, updateLastMessage]);
 
   const retryLastMessage = useCallback(() => {
-    if (state.messages.length < 2) return;
+    const currentState = stateRef.current;
+    if (currentState.messages.length < 2) return;
 
     // Remove the last assistant message and the user message before it
-    const userMessage = state.messages[state.messages.length - 2];
+    const userMessage = currentState.messages[currentState.messages.length - 2];
 
     setState(prev => ({
       ...prev,
@@ -179,7 +180,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
     if (userMessage && userMessage.role === 'user') {
       sendMessage(userMessage.content);
     }
-  }, [state.messages, sendMessage]);
+  }, [sendMessage]);
 
   const setMessages = useCallback((messages: ChatMessage[]) => {
     setState(prev => ({
