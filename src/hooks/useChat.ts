@@ -162,7 +162,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
         error: error instanceof Error ? error.message : 'An unexpected error occurred',
       }));
     }
-  }, [state.isLoading, state.messages, state.currentModel, addMessage, updateState, updateLastMessage]);
+  }, [addMessage, updateState, updateLastMessage]);
 
   const retryLastMessage = useCallback(() => {
     if (state.messages.length < 2) return;
