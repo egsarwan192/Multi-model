@@ -33,13 +33,13 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
 
     setState(prev => {
       const updatedMessages = [...prev.messages, newMessage];
-      onChatUpdate?.(updatedMessages, prev.currentModel);
+      onChatUpdateRef.current?.(updatedMessages, prev.currentModel);
       return {
         ...prev,
         messages: updatedMessages,
       };
     });
-  }, [onChatUpdate]);
+  }, []);
 
   const updateLastMessage = useCallback((content: string) => {
     setState(prev => {
