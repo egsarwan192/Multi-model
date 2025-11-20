@@ -66,46 +66,48 @@ export default function Message({ message, streaming }: MessageProps) {
             {isUser ? (
               <p className="whitespace-pre-wrap">{message.content}</p>
             ) : (
-              <ReactMarkdown
-                components={{
-                  code: ({ node, inline, className, children, ...props }: CodeProps) => {
-                    const match = /language-(\w+)/.exec(className || '');
-                    return !inline && match ? (
-                      <pre className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
-                        <code className={className} {...props}>
+              <>
+                <ReactMarkdown
+                  components={{
+                    code: ({ node, inline, className, children, ...props }: CodeProps) => {
+                      const match = /language-(\w+)/.exec(className || '');
+                      return !inline && match ? (
+                        <pre className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        </pre>
+                      ) : (
+                        <code
+                          className={clsx(
+                            'bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm',
+                            className
+                          )}
+                          {...props}
+                        >
                           {children}
                         </code>
-                      </pre>
-                    ) : (
-                      <code
-                        className={clsx(
-                          'bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm',
-                          className
-                        )}
+                      );
+                    },
+                    a: ({ href, children, ...props }: AnchorProps) => (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
                         {...props}
                       >
                         {children}
-                      </code>
-                    );
-                  },
-                  a: ({ href, children, ...props }: AnchorProps) => (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
-                      {...props}
-                    >
-                      {children}
-                    </a>
-                  ),
-                }}
-              >
-                {message.content}
+                      </a>
+                    ),
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
                 {streaming && (
                   <span className="inline-block w-2 h-4 bg-gray-400 dark:bg-gray-600 ml-1 animate-pulse" />
                 )}
-              </ReactMarkdown>
+              </>
             )}
           </div>
         </div>
