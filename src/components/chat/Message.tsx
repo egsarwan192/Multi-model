@@ -56,6 +56,7 @@ export default function Message({ message, streaming }: MessageProps) {
               <>
                 <ReactMarkdown
                   components={{
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     code: (props: any) => {
                       const { inline, className, children, ...rest } = props;
                       const match = /language-(\w+)/.exec(className || '');
