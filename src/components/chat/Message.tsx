@@ -69,11 +69,12 @@ export default function Message({ message, streaming }: MessageProps) {
               <>
                 <ReactMarkdown
                   components={{
-                    code: ({ inline, className, children, ...props }: CodeProps) => {
+                    code: (props: any) => {
+                      const { inline, className, children, ...rest } = props;
                       const match = /language-(\w+)/.exec(className || '');
                       return !inline && match ? (
                         <pre className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
-                          <code className={className} {...props}>
+                          <code className={className} {...rest}>
                             {children}
                           </code>
                         </pre>
@@ -83,23 +84,26 @@ export default function Message({ message, streaming }: MessageProps) {
                             'bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm',
                             className
                           )}
-                          {...props}
+                          {...rest}
                         >
                           {children}
                         </code>
                       );
                     },
-                    a: ({ href, children, ...props }: AnchorProps) => (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        {...props}
-                      >
-                        {children}
-                      </a>
-                    ),
+                    a: (props: any) => {
+                      const { href, children, ...rest } = props;
+                      return (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 dark:text-blue-400 hover:underline"
+                          {...rest}
+                        >
+                          {children}
+                        </a>
+                      );
+                    },
                   }}
                 >
                   {message.content}
