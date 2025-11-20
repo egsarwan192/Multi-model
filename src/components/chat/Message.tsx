@@ -8,13 +8,13 @@ interface CodeProps {
   inline?: boolean;
   className?: string;
   children?: React.ReactNode;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface AnchorProps {
   href?: string;
   children?: React.ReactNode;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface MessageProps {
