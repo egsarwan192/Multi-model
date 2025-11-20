@@ -68,7 +68,7 @@ export default function Message({ message, streaming }: MessageProps) {
             ) : (
               <ReactMarkdown
                 components={{
-                  code({ node, inline, className, children, ...props }) {
+                  code: ({ node, inline, className, children, ...props }: CodeProps) => {
                     const match = /language-(\w+)/.exec(className || '');
                     return !inline && match ? (
                       <pre className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
@@ -88,18 +88,17 @@ export default function Message({ message, streaming }: MessageProps) {
                       </code>
                     );
                   },
-                  a({ href, children }) {
-                    return (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                      >
-                        {children}
-                      </a>
-                    );
-                  },
+                  a: ({ href, children, ...props }: AnchorProps) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 dark:text-blue-400 hover:underline"
+                      {...props}
+                    >
+                      {children}
+                    </a>
+                  ),
                 }}
               >
                 {message.content}
