@@ -48,6 +48,7 @@ export default function ChatInput({
         <div className="relative flex items-end gap-2">
           <div className="relative flex-1">
             <textarea
+              ref={textareaRef}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -63,11 +64,6 @@ export default function ChatInput({
               style={{
                 minHeight: '52px',
                 maxHeight: '120px',
-              }}
-              onInput={(e) => {
-                const target = e.target as HTMLTextAreaElement;
-                target.style.height = 'auto';
-                target.style.height = `${Math.min(target.scrollHeight, 120)}px`;
               }}
             />
             <div className="absolute bottom-2 right-2 text-xs text-gray-400 dark:text-gray-500">
