@@ -51,7 +51,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
           ...lastMessage,
           content,
         };
-        onChatUpdate?.(messages, prev.currentModel);
+        onChatUpdateRef.current?.(messages, prev.currentModel);
       }
 
       return {
@@ -59,7 +59,7 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
         messages,
       };
     });
-  }, [onChatUpdate]);
+  }, []);
 
   const sendMessage = useCallback(async (content: string) => {
     if (state.isLoading) return;
