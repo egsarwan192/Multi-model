@@ -17,6 +17,9 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
     currentModel: initialModel,
   });
 
+  const onChatUpdateRef = useRef(onChatUpdate);
+  onChatUpdateRef.current = onChatUpdate;
+
   const updateState = useCallback((updates: Partial<ChatState>) => {
     setState(prev => ({ ...prev, ...updates }));
   }, []);
