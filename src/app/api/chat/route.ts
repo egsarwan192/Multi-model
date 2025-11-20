@@ -3,6 +3,17 @@ import { openrouter } from '@/lib/openrouter';
 import { ChatMessage } from '@/types/chat';
 
 export async function POST(req: Request) {
+  // Check if OpenRouter API key is configured
+  if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY === 'your_openrouter_api_key_here') {
+    return Response.json(
+      {
+        error: 'OpenRouter API key is not configured. Please add your API key to the .env.local file.',
+        details: 'Get your API key from https://openrouter.ai/keys and add it to your .env.local file as OPENROUTER_API_KEY=your_key_here'
+      },
+      { status: 500 }
+    );
+  }
+
   try {
     const { messages, model }: { messages: ChatMessage[]; model: string } = await req.json();
 
