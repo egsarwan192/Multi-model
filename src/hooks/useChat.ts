@@ -190,21 +190,25 @@ export function useChat({ initialModel, onChatUpdate }: UseChatProps) {
   }, []);
 
   const setCurrentModel = useCallback((model: string) => {
-    setState(prev => ({
-      ...prev,
-      currentModel: model,
-    }));
-    onChatUpdate?.(state.messages, model);
-  }, [state.messages, onChatUpdate]);
+    setState(prev => {
+      onChatUpdateRef.current?.(prev.messages, model);
+      return {
+        ...prev,
+        currentModel: model,
+      };
+    });
+  }, []);
 
   const clearChat = useCallback(() => {
-    setState(prev => ({
-      ...prev,
-      messages: [],
-      error: null,
-    }));
-    onChatUpdate?.([], state.currentModel);
-  }, [state.currentModel, onChatUpdate]);
+    setState(prev => {
+      onChatUpdateRef.current?.([], prev.currentModel);
+      return {
+        ...prev,
+        messages: [],
+        error: null,
+      };
+    });
+  }, []);
 
   return {
     ...state,
