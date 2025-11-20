@@ -30,7 +30,6 @@ export async function POST(req: Request) {
       model: openrouter(model),
       messages: formattedMessages,
       temperature: 0.7,
-      max_tokens: 2048,
     });
 
     return result.toAIStreamResponse();
