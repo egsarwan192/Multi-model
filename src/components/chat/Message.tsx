@@ -69,7 +69,7 @@ export default function Message({ message, streaming }: MessageProps) {
               <>
                 <ReactMarkdown
                   components={{
-                    code: ({ node, inline, className, children, ...props }: CodeProps) => {
+                    code: ({ inline, className, children, ...props }: CodeProps) => {
                       const match = /language-(\w+)/.exec(className || '');
                       return !inline && match ? (
                         <pre className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
