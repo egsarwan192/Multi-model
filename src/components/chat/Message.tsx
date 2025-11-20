@@ -78,6 +78,7 @@ export default function Message({ message, streaming }: MessageProps) {
                         </code>
                       );
                     },
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     a: (props: any) => {
                       const { href, children, ...rest } = props;
                       return (
