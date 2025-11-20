@@ -47,7 +47,7 @@ export default function ChatContainer({
               How can I help you today?
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Ask me anything! I'm here to assist with information, creative tasks, analysis, and more.
+              Ask me anything! I&apos;m here to assist with information, creative tasks, analysis, and more.
             </p>
             <div className="text-sm text-gray-500 dark:text-gray-500">
               Using: <span className="font-medium">{currentModel}</span>
